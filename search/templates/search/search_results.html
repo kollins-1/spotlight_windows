@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Files</title>
+    <style>
+        /* General Reset */
+        body {
+            margin: 0;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            
+            background: rgba(255, 255, 255, 0.1);
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .search-container {
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+        }
+
+        .search-bar input {
+            flex-grow: 1;
+            border: none;
+            outline: none;
+            font-size: 18px;
+            color: #333;
+            background: transparent;
+        }
+
+        .search-bar .search-icon {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: #888;
+            margin-left: 10px;
+        }
+
+        /* Search Results */
+        .search-results {
+            margin-top: 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            height: 400px;
+            overflow-y: auto;
+        }
+
+        .search-results::-webkit-scrollbar {
+            width: 8px; /* Thickness of the scrollbar */
+        }
+        
+        .search-results::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2); /* Scrollbar thumb color */
+            border-radius: 10px; /* Rounded scrollbar thumb */
+        }
+        
+        .search-results::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.4); /* Darker color on hover */
+        }
+        
+        .search-results::-webkit-scrollbar-track {
+            background: transparent; /* Track color */
+        }
+
+        .result-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+            border-bottom: 1px solid #eee;
+            overflow: hidden;
+        }
+
+        .result-item:hover {
+            background: #f0f0f0;
+        }
+
+        .result-item .icon {
+            font-size: 24px;
+            margin-right: 15px;
+            color: #555;
+        }
+
+        .result-item .info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .result-item .title {
+            font-size: 16px;
+            font-weight: normal;
+            color: #333;
+            margin: 0;
+            text-decoration: none;
+        }
+
+        .result-item .description {
+            font-size: 14px;
+            color: #777;
+            margin: 5px 0 0;
+        }
+
+        .no-results {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <!-- Search Form -->
+        <h1>Search Files</h1>
+        <form method="get" action="{% url 'search_files' %}">
+            <div class="search-bar">
+                <input 
+                    type="text" 
+                    name="query" 
+                    value="{{ form.query.value }}" 
+                    placeholder="Type to search..." 
+                />
+                <button type="submit" class="search-icon">🔍</button>
+            </div>
+        </form>
+
+        <!-- Search Results -->
+        {% if results %}
+            <div class="search-results">
+                {% for result in results %}
+                    <div class="result-item">
+                        <div class="icon">📄</div>
+                        <div class="info">
+                            <a href="{% url 'open_file' result.path|urlencode %}" class="title">
+                                {{ result.title }}
+                            </a>
+                            <div class="description">{{ result.description }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-results">No results found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

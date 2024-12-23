@@ -1,0 +1,15 @@
+INFO 2024-12-22 21:54:48,435 index_files Starting system-wide indexing and monitoring...
+INFO 2024-12-22 21:54:48,596 index_files Starting indexing from C:\
+INFO 2024-12-22 22:05:03,440 index_files Initial indexing complete.
+INFO 2024-12-22 22:05:03,861 index_files File monitoring started for the system.
+INFO 2024-12-22 22:06:28,219 index_files Starting system-wide indexing and monitoring...
+INFO 2024-12-22 22:06:28,279 autoreload Watching for file changes with StatReloader
+INFO 2024-12-22 22:06:28,287 index_files Starting indexing from C:\
+INFO 2024-12-22 22:06:31,104 basehttp "GET / HTTP/1.1" 302 0
+INFO 2024-12-22 22:06:31,107 basehttp "GET / HTTP/1.1" 302 0
+INFO 2024-12-22 22:06:31,202 basehttp "GET /search/search/ HTTP/1.1" 200 4093
+INFO 2024-12-22 22:06:31,202 basehttp "GET /search/search/ HTTP/1.1" 200 4093
+INFO 2024-12-22 22:06:37,967 basehttp "GET /search/search/?query=ECC301 HTTP/1.1" 200 4099
+INFO 2024-12-22 22:06:44,494 basehttp "GET /search/search/?query=ECC311 HTTP/1.1" 200 7854
+INFO 2024-12-22 22:06:55,123 basehttp "GET /search/open_file/C%253A%255CUsers%255CAyodeji%255CDesktop%255CECC311%255CECC311%2520Project%25201.docx/ HTTP/1.1" 302 0
+INFO 2024-12-22 22:06:55,130 basehttp "GET /search/search/ HTTP/1.1" 200 4093
